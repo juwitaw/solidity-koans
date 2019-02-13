@@ -280,7 +280,7 @@ library Assert {
     */
     function notEqual(address a, address b, string memory message) public returns (bool result) {
         result = (a != b);
-         _report(result, message);
+        _report(result, message);
     }
 
     /*
@@ -442,7 +442,7 @@ library Assert {
         Author: @nczhu
     */
     function equal(uint a, bytes1 b, string memory message) public {
-        a = uint(b); // arbitrary call to suppress compiler warning
+        a = uint(uint8(b)); // arbitrary call to suppress compiler warning
         _report(false, message);
     }
 
@@ -614,7 +614,7 @@ library Assert {
         Returns: nothing
     */
     function equal(int a, bytes1 b, string memory message) public {
-        a = int(b);    // arbitrary call to suppress compiler warning
+        a = int(int8(b));    // arbitrary call to suppress compiler warning
         _report(false, message);
     }
 
@@ -793,7 +793,7 @@ library Assert {
         Author: @nczhu
     */
     function equal(uint[] memory arrA, bytes1 koan, string memory message) public {
-        koan = bytes1(arrA.length); //supresses warnings
+        koan = bytes1(uint8(arrA.length)); //supresses warnings
         _report(false, message);
     }
     /*
