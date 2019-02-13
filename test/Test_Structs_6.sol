@@ -22,16 +22,16 @@ contract Test_Structs_6 is Koans {
     function test_structs_are_composite_variables() public {
         orange_grove.total_trees = 2048;
         orange_grove.in_season = true;
-        Assert.__(orange_grove.in_season, "orange grove should be in season");
-        Assert.equal(orange_grove.total_trees, __, "orange grove should have many trees");
+        Assert.isTrue(orange_grove.in_season, "orange grove should be in season");
+        Assert.equal(orange_grove.total_trees, uint(2048), "orange grove should have many trees");
     }
 
     function test_structs_accept_object_notation() public {
         orange_grove = Orchard(12345, true);
-        Assert.__(orange_grove.in_season, "orange grove should be in season");
+        Assert.isTrue(orange_grove.in_season, "orange grove should be in season");
 
         orange_grove = Orchard({total_trees: 54321, in_season: false});
-        Assert.equal(orange_grove.total_trees, __, "orange grove should have many trees");
+        Assert.equal(orange_grove.total_trees, uint(54321), "orange grove should have many trees");
 
     }
 
@@ -47,7 +47,7 @@ contract Test_Structs_6 is Koans {
     function test_structs_can_contain_functions() public {
         kitchen_light.turn_on_switch = helper;
         kitchen_light.turn_on_switch();
-        Assert.__(kitchen_light.is_on, "kitchen light should be turned on");
+        Assert.isTrue(kitchen_light.is_on, "kitchen light should be turned on");
     }
 
     function helper() private {
@@ -68,8 +68,8 @@ contract Test_Structs_6 is Koans {
         th.available_words.push("zen");
         th.synonyms["tranquil"] = "calm";
         th.available_words.push("tranquil");
-        Assert.equal(th.synonyms[th.available_words[1]], __, "should return the correct synonym");
-        Assert.equal(th.synonyms[th.available_words[0]], __, "should return the correct synonym");
+        Assert.equal(th.synonyms[th.available_words[1]], "calm", "should return the correct synonym");
+        Assert.equal(th.synonyms[th.available_words[0]], "serene", "should return the correct synonym");
     }
 
     // ---------------------------------------------------
@@ -85,8 +85,8 @@ contract Test_Structs_6 is Koans {
         funders.push(Funder(100,"Anne"));    
         funders.push(Funder(200,"Ken"));    
         funders.push(Funder(300,"Daniel"));   
-        Assert.equal(funders[1].amount, __, "should be correct fund amount from Ken"); 
-        Assert.equal(funders[2].name, __, "should be correct name who donated 300"); 
+        Assert.equal(funders[1].amount, uint(200), "should be correct fund amount from Ken"); 
+        Assert.equal(funders[2].name, "Daniel", "should be correct name who donated 300"); 
     }
 
     // ---------------------------------------------------
@@ -104,6 +104,7 @@ contract Test_Structs_6 is Koans {
     function test_you_can_have_mappings_of_structs() public {
         // TODO: add a Roster struct to the mapping to pass the test
         // __
+        name_map[0] = Roster("Chris", "Hemsworth");
         Assert.equal(name_map[0].first_name, "Chris", "mapping should contain a struct with the correct first_name");
         Assert.equal(name_map[0].last_name, "Hemsworth", "mapping should contain a struct with the correct last_name");
     }
@@ -126,8 +127,8 @@ contract Test_Structs_6 is Koans {
     
     function test_use_flag_to_indicate_when_struct_is_initialized() public {
         machine2 = Slot_Machine(7, 7, 7, true);
-        Assert.__(machine1.exists, "should return the correct initialization state");
-        Assert.__(machine2.exists, "should return the correct initialization state");
+        Assert.isFalse(machine1.exists, "should return the correct initialization state");
+        Assert.isTrue(machine2.exists, "should return the correct initialization state");
     }
 
     /*
