@@ -54,7 +54,8 @@ contract Test_Numbers_2 is Koans {
 
     function test_ints_can_be_exponentiated() public {
         int actual = 2 ** 128;
-        Assert.equal(actual, 2 ** 128, "should correctly calculate 2^128");
+        Assert.equal(actual, int(340282366920938463463374607431768211456), 
+        "should correctly calculate 2^128");
     }
 
     function test_ints_can_be_modded() public {
@@ -75,17 +76,19 @@ contract Test_Numbers_2 is Koans {
     }
 
     // Beware of arithmetic underflows, which are not handled by 
+    // when int reaching minimum which is 0, it will back to max of uint (underflows)
     function test_arithmetic_underflows() public {
         uint zero = 0;
         uint less_than_zero = zero - 1;
-        Assert.equal(less_than_zero, zero - 1, "result should be underflowed");
+        Assert.equal(less_than_zero, MAX_UINT, "result should be underflowed");
     }
 
     // // Beware of arithmetic overflows
+    // when uint reaching maximum int, it will start from 0 again (overflow)
     function test_arithmetic_overflows() public {
         uint max = MAX_UINT;
         uint more_than_max = max + 1;
-        Assert.equal(more_than_max, max + 1, "result should be overflowed");
+        Assert.equal(more_than_max, uint(0), "result should be overflowed");
     }
 
     /* 
