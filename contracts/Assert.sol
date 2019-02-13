@@ -48,10 +48,10 @@ library Assert {
     // The null string: ""
     string constant STRING_NULL = "";
 
-    uint8 constant ZERO = uint8(byte('0'));
-    uint8 constant A = uint8(byte('a'));
+    uint8 constant ZERO = uint8(byte("0"));
+    uint8 constant A = uint8(byte("a"));
 
-    byte constant MINUS = byte('-');
+    byte constant MINUS = byte("-");
 
     /*
         Event: TestEvent
@@ -65,7 +65,7 @@ library Assert {
     /*
         Author: @nczhu
     */
-    function __(bytes32 a, string message) public {
+    function __(bytes32 a, string memory message) public {
         a = bytes32(0x00);
         _report(false, message);
     }
@@ -73,7 +73,7 @@ library Assert {
     /*
         Author: @nczhu
     */
-    function __(bool a, string message) public {
+    function __(bool a, string memory message) public {
         a = true;
         _report(false, message);
     }
@@ -81,7 +81,7 @@ library Assert {
     /*
         Author: @nczhu
     */
-    function __(uint a, uint b, string message) public {
+    function __(uint a, uint b, string memory message) public {
         a = b;
         _report(false, message);
     }
@@ -96,7 +96,7 @@ library Assert {
         Returns:
             result (bool) - false.
     */
-    function fail(string message) public returns (bool result) {
+    function fail(string memory message) public returns (bool result) {
         _report(false, message);
         return false;
     }
@@ -114,7 +114,7 @@ library Assert {
         Returns:
             result (bool) - The result.
     */
-    function equal(string a, string b, string message) public returns (bool result) {
+    function equal(string memory a, string memory b, string memory message) public returns (bool result) {
         result = _stringsEqual(a, b);
         if (result)
             _report(result, message);
@@ -125,7 +125,7 @@ library Assert {
     /* 
         Author: @nczhu
     */
-    function equal(string a, bytes1 b, string message) public returns (string) {
+    function equal(string memory a, bytes1 b, string memory message) public returns (string memory) {
         b = 0x00;
         _report(false, message);
         return(a);
@@ -142,7 +142,7 @@ library Assert {
         Returns:
             result (bool) - The result.
     */
-    function notEqual(string a, string b, string message) public returns (bool result) {
+    function notEqual(string memory a, string memory b, string memory message) public returns (bool result) {
         result = !_stringsEqual(a, b);
         if (result)
             _report(result, message);
@@ -160,7 +160,7 @@ library Assert {
         Returns:
             result (bool) - The result.
     */
-    function isEmpty(string str, string message) public returns (bool result) {
+    function isEmpty(string memory str, string memory message) public returns (bool result) {
         result = _stringsEqual(str, STRING_NULL);
         if (result)
             _report(result, message);
@@ -178,7 +178,7 @@ library Assert {
         Returns:
             result (bool) - The result.
     */
-    function isNotEmpty(string str, string message) public returns (bool result) {
+    function isNotEmpty(string memory str, string memory message) public returns (bool result) {
         result = !_stringsEqual(str, STRING_NULL);
         if (result)
             _report(result, message);
@@ -190,62 +190,62 @@ library Assert {
 
     /*
         Function: equal(bytes32)
-        Assert that two 'bytes32' are equal.
+        Assert that two "bytes32" are equal.
         : A == B
         Params:
-            A (bytes32) - The first 'bytes32'.
-            B (bytes32) - The second 'bytes32'.
+            A (bytes32) - The first "bytes32".
+            B (bytes32) - The second "bytes32".
             message (string) - A message that is sent if the assertion fails.
         Returns:
             result (bool) - The result.
     */
-    function equal(bytes32 a, bytes32 b, string message) public returns (bool result) {
+    function equal(bytes32 a, bytes32 b, string memory message) public returns (bool result) {
         result = (a == b);
         _report(result, message);
     }
 
     /*
         Function: notEqual(bytes32)
-        Assert that two 'bytes32' are not equal.
+        Assert that two "bytes32" are not equal.
         : A != B
         Params:
-            A (bytes32) - The first 'bytes32'.
-            B (bytes32) - The second 'bytes32'.
+            A (bytes32) - The first "bytes32".
+            B (bytes32) - The second "bytes32".
             message (string) - A message that is sent if the assertion fails.
         Returns:
             result (bool) - The result.
     */
-    function notEqual(bytes32 a, bytes32 b, string message) public returns (bool result) {
+    function notEqual(bytes32 a, bytes32 b, string memory message) public returns (bool result) {
         result = (a != b);
         _report(result, message);
     }
 
     /*
         Function: isZero(bytes32)
-        Assert that a 'bytes32' is zero.
+        Assert that a "bytes32" is zero.
         : bts == BYTES32_NULL
         Params:
-            bts (bytes32) - The 'bytes32'.
+            bts (bytes32) - The "bytes32".
             message (string) - A message that is sent if the assertion fails.
         Returns:
             result (bool) - The result.
     */
-    function isZero(bytes32 bts, string message) public returns (bool result) {
+    function isZero(bytes32 bts, string memory message) public returns (bool result) {
         result = (bts == BYTES32_NULL);
         _report(result, message);
     }
 
     /*
         Function: isNotZero(bytes32)
-        Assert that a 'bytes32' is not zero.
+        Assert that a "bytes32" is not zero.
         : bts != BYTES32_NULL
         Params:
-            bts (bytes32) - The 'bytes32'.
+            bts (bytes32) - The "bytes32".
             message (string) - A message that is sent if the assertion fails.
         Returns:
             result (bool) - The result.
     */
-    function isNotZero(bytes32 bts, string message) public returns (bool result) {
+    function isNotZero(bytes32 bts, string memory message) public returns (bool result) {
         result = (bts != BYTES32_NULL);
         _report(result, message);
     }
@@ -263,7 +263,7 @@ library Assert {
         Returns:
             result (bool) - The result.
     */
-    function equal(address a, address b, string message) public returns (bool result) {
+    function equal(address a, address b, string memory message) public returns (bool result) {
         result = (a == b);
         _report(result, message);
     }
@@ -278,7 +278,7 @@ library Assert {
         Returns:
             result (bool) - The result.
     */
-    function notEqual(address a, address b, string message) public returns (bool result) {
+    function notEqual(address a, address b, string memory message) public returns (bool result) {
         result = (a != b);
          _report(result, message);
     }
@@ -293,7 +293,7 @@ library Assert {
         Returns:
             result (bool) - The result.
     */
-    function isZero(address addr, string message) public returns (bool result) {
+    function isZero(address addr, string memory message) public returns (bool result) {
         result = (addr == ADDRESS_NULL);
         _report(result, message);
     }
@@ -308,7 +308,7 @@ library Assert {
         Returns:
             result (bool) - The result.
     */
-    function isNotZero(address addr, string message) public returns (bool result) {
+    function isNotZero(address addr, string memory message) public returns (bool result) {
         result = (addr != ADDRESS_NULL);
         _report(result, message);
     }
@@ -317,7 +317,7 @@ library Assert {
 
     /*
         Function: isTrue
-        Assert that a boolean is 'true'.
+        Assert that a boolean is "true".
         : b == true
         Params:
             b (bool) - The boolean.
@@ -325,7 +325,7 @@ library Assert {
         Returns:
             result (bool) - The result.
     */
-    function isTrue(bool b, string message) public returns (bool result) {
+    function isTrue(bool b, string memory message) public returns (bool result) {
         result = b;
         _report(result, message);
     }
@@ -336,14 +336,14 @@ library Assert {
         Autofail the assertion and log the error message
         Returns: nothing
     */
-    function isTrue(bytes1 b, string message) public {
+    function isTrue(bytes1 b, string memory message) public {
         b = 0x00;    // arbitrary call to suppress compiler warning
         _report(false, message);
     }
 
     /*
         Function: isFalse
-        Assert that a boolean is 'false'.
+        Assert that a boolean is "false".
         : b == false
         Params:
             b (bool) - The boolean.
@@ -351,7 +351,7 @@ library Assert {
         Returns:
             result (bool) - The result.
     */
-    function isFalse(bool b, string message) public returns (bool result) {
+    function isFalse(bool b, string memory message) public returns (bool result) {
         result = !b;
         _report(result, message);
     }
@@ -362,7 +362,7 @@ library Assert {
         Autofail the assertion and log the error message
         Returns: nothing
     */
-    function isFalse(bytes1 b, string message) public {
+    function isFalse(bytes1 b, string memory message) public {
         b = 0x00;    // arbitrary call to suppress compiler warning
         _report(false, message);
     }
@@ -378,7 +378,7 @@ library Assert {
         Returns:
             result (bool) - The result.
     */
-    function equal(bool a, bool b, string message) public returns (bool result) {
+    function equal(bool a, bool b, string memory message) public returns (bool result) {
         result = (a == b);
         if (result)
             _report(result, message);
@@ -392,7 +392,7 @@ library Assert {
         Autofail the assertion and log the error message
         Returns: nothing
     */
-    function equal(bool a, bytes1 b, string message) public {
+    function equal(bool a, bytes1 b, string memory message) public {
         a = false;
         b = 0x00;    // arbitrary call to suppress compiler warning
         _report(false, message);
@@ -409,7 +409,7 @@ library Assert {
         Returns:
             result (bool) - The result.
     */
-    function notEqual(bool a, bool b, string message) public returns (bool result) {
+    function notEqual(bool a, bool b, string memory message) public returns (bool result) {
         result = (a != b);
         if (result)
             _report(result, message);
@@ -430,7 +430,7 @@ library Assert {
         Returns:
             result (bool) - The result.
     */
-    function equal(uint a, uint b, string message) public returns (bool result) {
+    function equal(uint a, uint b, string memory message) public returns (bool result) {
         result = (a == b);
         if (result)
             _report(result, message);
@@ -441,7 +441,7 @@ library Assert {
     /*
         Author: @nczhu
     */
-    function equal(uint a, bytes1 b, string message) public {
+    function equal(uint a, bytes1 b, string memory message) public {
         a = uint(b); // arbitrary call to suppress compiler warning
         _report(false, message);
     }
@@ -457,7 +457,7 @@ library Assert {
         Returns:
             result (bool) - The result.
     */
-    function notEqual(uint a, uint b, string message) public returns (bool result) {
+    function notEqual(uint a, uint b, string memory message) public returns (bool result) {
         result = (a != b);
         if (result)
             _report(result, message);
@@ -467,7 +467,7 @@ library Assert {
 
     /*
         Function: isAbove(uint)
-        Assert that the uint 'A' is greater than the uint 'B'.
+        Assert that the uint "A" is greater than the uint "B".
         : A > B
         Params:
             A (uint) - The first uint.
@@ -476,7 +476,7 @@ library Assert {
         Returns:
             result (bool) - The result.
     */
-    function isAbove(uint a, uint b, string message) public returns (bool result) {
+    function isAbove(uint a, uint b, string memory message) public returns (bool result) {
         result = (a > b);
         if (result)
             _report(result, message);
@@ -486,7 +486,7 @@ library Assert {
 
     /*
         Function: isAtLeast(uint)
-        Assert that the uint 'A' is greater than or equal to the uint 'B'.
+        Assert that the uint "A" is greater than or equal to the uint "B".
         : A >= B
         Params:
             A (uint) - The first uint.
@@ -495,7 +495,7 @@ library Assert {
         Returns:
             result (bool) - The result.
     */
-    function isAtLeast(uint a, uint b, string message) public returns (bool result) {
+    function isAtLeast(uint a, uint b, string memory message) public returns (bool result) {
         result = (a >= b);
         if (result)
             _report(result, message);
@@ -505,7 +505,7 @@ library Assert {
 
     /*
         Function: isBelow(uint)
-        Assert that the uint 'A' is lesser than the uint 'B'.
+        Assert that the uint "A" is lesser than the uint "B".
         : A < B
         Params:
             A (uint) - The first uint.
@@ -514,7 +514,7 @@ library Assert {
         Returns:
             result (bool) - The result.
     */
-    function isBelow(uint a, uint b, string message) public returns (bool result) {
+    function isBelow(uint a, uint b, string memory message) public returns (bool result) {
         result = (a < b);
         if (result)
             _report(result, message);
@@ -527,14 +527,14 @@ library Assert {
         Function: isBelow(uint a, uint b) for Koans
         Autofail the assertion and log the error message
     */
-    function isBelow(bytes1 a, bytes1 b, string message) public {
+    function isBelow(bytes1 a, bytes1 b, string memory message) public {
         a = b; //aribtrary warning supression
         _report(false, message);
     }
 
     /*
         Function: isAtMost(uint)
-        Assert that the uint 'A' is lesser than or equal to the uint 'B'.
+        Assert that the uint "A" is lesser than or equal to the uint "B".
         : A <= B
         Params:
             A (uint) - The first uint.
@@ -543,7 +543,7 @@ library Assert {
         Returns:
             result (bool) - The result.
     */
-    function isAtMost(uint a, uint b, string message) public returns (bool result) {
+    function isAtMost(uint a, uint b, string memory message) public returns (bool result) {
         result = (a <= b);
         if (result)
             _report(result, message);
@@ -561,7 +561,7 @@ library Assert {
         Returns:
             result (bool) - The result.
     */
-    function isZero(uint number, string message) public returns (bool result) {
+    function isZero(uint number, string memory message) public returns (bool result) {
         result = (number == 0);
         if (result)
             _report(result, message);
@@ -579,7 +579,7 @@ library Assert {
         Returns:
             result (bool) - The result.
     */
-    function isNotZero(uint number, string message) public returns (bool result) {
+    function isNotZero(uint number, string memory message) public returns (bool result) {
         result = (number != 0);
         if (result)
             _report(result, message);
@@ -599,7 +599,7 @@ library Assert {
         Returns:
             result (bool) - The result.
     */
-    function equal(int a, int b, string message) public returns (bool result) {
+    function equal(int a, int b, string memory message) public returns (bool result) {
         result = (a == b);
         if (result)
             _report(result, message);
@@ -613,7 +613,7 @@ library Assert {
         Autofail the assertion and log the error message
         Returns: nothing
     */
-    function equal(int a, bytes1 b, string message) public {
+    function equal(int a, bytes1 b, string memory message) public {
         a = int(b);    // arbitrary call to suppress compiler warning
         _report(false, message);
     }
@@ -629,7 +629,7 @@ library Assert {
         Returns:
             result (bool) - The result.
     */
-    function notEqual(int a, int b, string message) public returns (bool result) {
+    function notEqual(int a, int b, string memory message) public returns (bool result) {
         result = (a != b);
         if (result)
             _report(result, message);
@@ -643,7 +643,7 @@ library Assert {
         Autofail the assertion and log the error message
         Returns: nothing
     */
-    function notEqual(int a, bytes1 b, string message) public {
+    function notEqual(int a, bytes1 b, string memory message) public {
         a = 0;
         b = 0x00;    // arbitrary call to suppress compiler warning
         _report(false, message);
@@ -651,7 +651,7 @@ library Assert {
 
     /*
         Function: isAbove(int)
-        Assert that the int 'A' is greater than the int 'B'.
+        Assert that the int "A" is greater than the int "B".
         : A > B
         Params:
             A (int) - The first int.
@@ -660,7 +660,7 @@ library Assert {
         Returns:
             result (bool) - The result.
     */
-    function isAbove(int a, int b, string message) public returns (bool result) {
+    function isAbove(int a, int b, string memory message) public returns (bool result) {
         result = (a > b);
         if (result)
             _report(result, message);
@@ -670,7 +670,7 @@ library Assert {
 
     /*
         Function: isAtLeast(int)
-        Assert that the int 'A' is greater than or equal to the int 'B'.
+        Assert that the int "A" is greater than or equal to the int "B".
         : A >= B
         Params:
             A (int) - The first int.
@@ -679,7 +679,7 @@ library Assert {
         Returns:
             result (bool) - The result.
     */
-    function isAtLeast(int a, int b, string message) public returns (bool result) {
+    function isAtLeast(int a, int b, string memory message) public returns (bool result) {
         result = (a >= b);
         if (result)
             _report(result, message);
@@ -689,7 +689,7 @@ library Assert {
 
     /*
         Function: isBelow(int)
-        Assert that the int 'A' is lesser than the int 'B'.
+        Assert that the int "A" is lesser than the int "B".
         : A < B
         Params:
             A (int) - The first int.
@@ -698,7 +698,7 @@ library Assert {
         Returns:
             result (bool) - The result.
     */
-    function isBelow(int a, int b, string message) public returns (bool result) {
+    function isBelow(int a, int b, string memory message) public returns (bool result) {
         result = (a < b);
         if (result)
             _report(result, message);
@@ -708,7 +708,7 @@ library Assert {
 
     /*
         Function: isAtMost(int)
-        Assert that the int 'A' is lesser than or equal to the int 'B'.
+        Assert that the int "A" is lesser than or equal to the int "B".
         : A <= B
         Params:
             A (int) - The first int.
@@ -717,7 +717,7 @@ library Assert {
         Returns:
             result (bool) - The result.
     */
-    function isAtMost(int a, int b, string message) public returns (bool result) {
+    function isAtMost(int a, int b, string memory message) public returns (bool result) {
         result = (a <= b);
         if (result)
             _report(result, message);
@@ -735,7 +735,7 @@ library Assert {
         Returns:
             result (bool) - The result.
     */
-    function isZero(int number, string message) public returns (bool result) {
+    function isZero(int number, string memory message) public returns (bool result) {
         result = (number == 0);
         if (result)
             _report(result, message);
@@ -753,7 +753,7 @@ library Assert {
         Returns:
             result (bool) - The result.
     */
-    function isNotZero(int number, string message) public returns (bool result) {
+    function isNotZero(int number, string memory message) public returns (bool result) {
         result = (number != 0);
         if (result)
             _report(result, message);
@@ -764,10 +764,10 @@ library Assert {
     // ************************************** uint[] **************************************
 
     /*
-        Function: equal(uint[])
-        Assert that two 'uint[ ]' are equal.
+        Function: equal(uint[] memory)
+        Assert that two "uint[ ]" are equal.
         : arrA.length == arrB.length
-        and, for all valid indices 'i'
+        and, for all valid indices "i"
         : arrA[i] == arrB[i]
         Params:
             A (uint[]) - The first array.
@@ -776,7 +776,7 @@ library Assert {
         Returns:
             result (bool) - The result.
     */
-    function equal(uint[] arrA, uint[] arrB, string message) public returns (bool result) {
+    function equal(uint[] memory arrA, uint[] arrB, string memory message) public returns (bool result) {
         result = arrA.length == arrB.length;
         if (result) {
             for (uint i = 0; i < arrA.length; i++) {
@@ -792,15 +792,15 @@ library Assert {
     /*
         Author: @nczhu
     */
-    function equal(uint[] arrA, bytes1 koan, string message) public {
+    function equal(uint[] arrA, bytes1 koan, string memory message) public {
         koan = bytes1(arrA.length); //supresses warnings
         _report(false, message);
     }
     /*
         Function: notEqual(uint[])
-        Assert that two 'uint[]' are not equal.
+        Assert that two "uint[]" are not equal.
         : arrA.length != arrB.length
-        or, for some valid index 'i'
+        or, for some valid index "i"
         : arrA[i] != arrB[i]
         Params:
             A (uint[]) - The first string.
@@ -809,7 +809,7 @@ library Assert {
         Returns:
             result (bool) - The result.
     */
-    function notEqual(uint[] arrA, uint[] arrB, string message) public returns (bool result) {
+    function notEqual(uint[] arrA, uint[] arrB, string memory message) public returns (bool result) {
         result = arrA.length == arrB.length;
         if (result) {
             for (uint i = 0; i < arrA.length; i++) {
@@ -825,7 +825,7 @@ library Assert {
 
     /*
         Function: lengthEqual(uint[])
-        Assert that the length of a 'uint[]' is equal to a given value.
+        Assert that the length of a "uint[]" is equal to a given value.
         : arr.length == length
         Params:
             arr (uint[]) - The array.
@@ -834,7 +834,7 @@ library Assert {
         Returns:
             result (bool) - The result.
     */
-    function lengthEqual(uint[] arr, uint length, string message) public returns (bool result) {
+    function lengthEqual(uint[] arr, uint length, string memory message) public returns (bool result) {
         uint arrLength = arr.length;
         if (arrLength == length)
             _report(result, "");
@@ -844,7 +844,7 @@ library Assert {
 
     /*
         Function: lengthNotEqual(uint[])
-        Assert that the length of a 'uint[]' is not equal to a given value.
+        Assert that the length of a "uint[]" is not equal to a given value.
         : arr.length != length
         Params:
             arr (uint[]) - The array.
@@ -865,9 +865,9 @@ library Assert {
 
     /*
         Function: equal(int[])
-        Assert that two 'int[]' are equal.
+        Assert that two "int[]" are equal.
         : arrA.length == arrB.length
-        and, for all valid indices 'i'
+        and, for all valid indices "i"
         : arrA[i] == arrB[i]
         Params:
             A (int[]) - The first array.
@@ -876,7 +876,7 @@ library Assert {
         Returns:
             result (bool) - The result.
     */
-    function equal(int[] arrA, int[] arrB, string message) public returns (bool result) {
+    function equal(int[] arrA, int[] arrB, string memory message) public returns (bool result) {
         result = arrA.length == arrB.length;
         if (result) {
             for (uint i = 0; i < arrA.length; i++) {
@@ -891,9 +891,9 @@ library Assert {
 
     /*
         Function: notEqual(int[])
-        Assert that two 'int[]' are not equal.
+        Assert that two "int[]" are not equal.
         : arrA.length != arrB.length
-        or, for some valid index 'i'
+        or, for some valid index "i"
         : arrA[i] != arrB[i]
         Params:
             A (int[]) - The first string.
@@ -902,7 +902,7 @@ library Assert {
         Returns:
             result (bool) - The result.
     */
-    function notEqual(int[] arrA, int[] arrB, string message) public returns (bool result) {
+    function notEqual(int[] arrA, int[] arrB, string memory message) public returns (bool result) {
         result = arrA.length == arrB.length;
         if (result) {
             for (uint i = 0; i < arrA.length; i++) {
@@ -918,7 +918,7 @@ library Assert {
 
     /*
         Function: lengthEqual(int[])
-        Assert that the length of an 'int[]' is equal to a given value.
+        Assert that the length of an "int[]" is equal to a given value.
         : arr.length == length
         Params:
             arr (int[]) - The array.
@@ -927,7 +927,7 @@ library Assert {
         Returns:
             result (bool) - The result.
     */
-    function lengthEqual(int[] arr, uint length, string message) public returns (bool result) {
+    function lengthEqual(int[] arr, uint length, string memory message) public returns (bool result) {
         uint arrLength = arr.length;
         if (arrLength == length)
             _report(result, "");
@@ -937,7 +937,7 @@ library Assert {
 
     /*
         Function: lengthNotEqual(int[])
-        Assert that the length of an 'int[]' is not equal to a given value.
+        Assert that the length of an "int[]" is not equal to a given value.
         : arr.length != length
         Params:
             arr (int[]) - The array.
@@ -958,9 +958,9 @@ library Assert {
 
     /*
         Function: equal(address[])
-        Assert that two 'address[]' are equal.
+        Assert that two "address[]" are equal.
         : arrA.length == arrB.length
-        and, for all valid indices 'i'
+        and, for all valid indices "i"
         : arrA[i] == arrB[i]
         Params:
             A (address[]) - The first array.
@@ -969,7 +969,7 @@ library Assert {
         Returns:
             result (bool) - The result.
     */
-    function equal(address[] arrA, address[] arrB, string message) public returns (bool result) {
+    function equal(address[] arrA, address[] arrB, string memory message) public returns (bool result) {
         result = arrA.length == arrB.length;
         if (result) {
             for (uint i = 0; i < arrA.length; i++) {
@@ -984,9 +984,9 @@ library Assert {
 
     /*
         Function: notEqual(address[])
-        Assert that two 'address[]' are not equal.
+        Assert that two "address[]" are not equal.
         : arrA.length != arrB.length
-        or, for some valid index 'i'
+        or, for some valid index "i"
         : arrA[i] != arrB[i]
         Params:
             A (address[]) - The first string.
@@ -995,7 +995,7 @@ library Assert {
         Returns:
             result (bool) - The result.
     */
-    function notEqual(address[] arrA, address[] arrB, string message) public returns (bool result) {
+    function notEqual(address[] arrA, address[] arrB, string memory message) public returns (bool result) {
         result = arrA.length == arrB.length;
         if (result) {
             for (uint i = 0; i < arrA.length; i++) {
@@ -1011,7 +1011,7 @@ library Assert {
 
     /*
         Function: lengthEqual(address[])
-        Assert that the length of an 'address[]' is equal to a given value.
+        Assert that the length of an "address[]" is equal to a given value.
         : arr.length == length
         Params:
             arr (address[]) - The array.
@@ -1020,7 +1020,7 @@ library Assert {
         Returns:
             result (bool) - The result.
     */
-    function lengthEqual(address[] arr, uint length, string message) public returns (bool result) {
+    function lengthEqual(address[] arr, uint length, string memory message) public returns (bool result) {
         uint arrLength = arr.length;
         if (arrLength == length)
             _report(result, "");
@@ -1030,7 +1030,7 @@ library Assert {
 
     /*
         Function: lengthNotEqual(address[])
-        Assert that the length of an 'address[]' is not equal to a given value.
+        Assert that the length of an "address[]" is not equal to a given value.
         : arr.length != length
         Params:
             arr (address[]) - The array.
@@ -1051,9 +1051,9 @@ library Assert {
 
     /*
         Function: equal(bytes32[])
-        Assert that two 'bytes32[]' are equal.
+        Assert that two "bytes32[]" are equal.
         : arrA.length == arrB.length
-        and, for all valid indices 'i'
+        and, for all valid indices "i"
         : arrA[i] == arrB[i]
         Params:
             A (bytes32[]) - The first array.
@@ -1062,7 +1062,7 @@ library Assert {
         Returns:
             result (bool) - The result.
     */
-    function equal(bytes32[] arrA, bytes32[] arrB, string message) public returns (bool result) {
+    function equal(bytes32[] arrA, bytes32[] arrB, string memory message) public returns (bool result) {
         result = arrA.length == arrB.length;
         if (result) {
             for (uint i = 0; i < arrA.length; i++) {
@@ -1077,9 +1077,9 @@ library Assert {
 
     /*
         Function: notEqual(bytes32[])
-        Assert that two 'bytes32[]' are not equal.
+        Assert that two "bytes32[]" are not equal.
         : arrA.length != arrB.length
-        or, for some valid index 'i'
+        or, for some valid index "i"
         : arrA[i] != arrB[i]
         Params:
             A (bytes32[]) - The first string.
@@ -1088,7 +1088,7 @@ library Assert {
         Returns:
             result (bool) - The result.
     */
-    function notEqual(bytes32[] arrA, bytes32[] arrB, string message) public returns (bool result) {
+    function notEqual(bytes32[] arrA, bytes32[] arrB, string memory message) public returns (bool result) {
         result = arrA.length == arrB.length;
         if (result) {
             for (uint i = 0; i < arrA.length; i++) {
@@ -1104,7 +1104,7 @@ library Assert {
 
     /*
         Function: lengthEqual(bytes32[])
-        Assert that the length of an 'bytes32[]' is equal to a given value.
+        Assert that the length of an "bytes32[]" is equal to a given value.
         : arr.length == length
         Params:
             arr (bytes32[]) - The array.
@@ -1113,7 +1113,7 @@ library Assert {
         Returns:
             result (bool) - The result.
     */
-    function lengthEqual(bytes32[] arr, uint length, string message) public returns (bool result) {
+    function lengthEqual(bytes32[] arr, uint length, string memory message) public returns (bool result) {
         uint arrLength = arr.length;
         if (arrLength == length)
             _report(result, "");
@@ -1123,7 +1123,7 @@ library Assert {
 
     /*
         Function: lengthNotEqual(bytes32[])
-        Assert that the length of an 'bytes32[]' is not equal to a given value.
+        Assert that the length of an "bytes32[]" is not equal to a given value.
         : arr.length != length
         Params:
             arr (bytes32[]) - The array.
@@ -1144,7 +1144,7 @@ library Assert {
 
     /*
         Function: balanceEqual
-        Assert that the balance of an account 'A' is equal to a given number 'b'.
+        Assert that the balance of an account "A" is equal to a given number "b".
         : A.balance = b
         Params:
             A (address) - The first address.
@@ -1153,14 +1153,14 @@ library Assert {
         Returns:
             result (bool) - The result.
     */
-    function balanceEqual(address a, uint b, string message) public returns (bool result) {
+    function balanceEqual(address a, uint b, string memory message) public returns (bool result) {
         result = (a.balance == b);
         _report(result, message);
     }
 
     /*
         Function: balanceNotEqual
-        Assert that the balance of an account 'A' is not equal to a given number 'b'.
+        Assert that the balance of an account "A" is not equal to a given number "b".
         : A.balance != b
         Params:
             A (address) - The first address.
@@ -1169,14 +1169,14 @@ library Assert {
         Returns:
             result (bool) - The result.
     */
-    function balanceNotEqual(address a, uint b, string message) public returns (bool result) {
+    function balanceNotEqual(address a, uint b, string memory message) public returns (bool result) {
         result = (a.balance != b);
         _report(result, message);
     }
 
     /*
         Function: balanceIsZero
-        Assert that the balance of an account 'A' is zero.
+        Assert that the balance of an account "A" is zero.
         : A.balance == 0
         Params:
             A (address) - The first address.
@@ -1184,14 +1184,14 @@ library Assert {
         Returns:
             result (bool) - The result.
     */
-    function balanceIsZero(address a, string message) public returns (bool result) {
+    function balanceIsZero(address a, string memory message) public returns (bool result) {
         result = (a.balance == 0);
         _report(result, message);
     }
 
     /*
         Function: balanceIsNotZero
-        Assert that the balance of an account 'A' is not zero.
+        Assert that the balance of an account "A" is not zero.
         : A.balance != 0
         Params:
             A (address) - The first address.
@@ -1199,7 +1199,7 @@ library Assert {
         Returns:
             result (bool) - The result.
     */
-    function balanceIsNotZero(address a, string message) public returns (bool result) {
+    function balanceIsNotZero(address a, string memory message) public returns (bool result) {
         result = (a.balance != 0);
         _report(result, message);
     }
@@ -1213,7 +1213,7 @@ library Assert {
                 result (bool) - The test result (true or false).
                 message (string) - The message that is sent if the assertion fails.
         */
-    function _report(bool result, string message) internal {
+    function _report(bool result, string memory message) internal {
         if(result)
             emit TestEvent(true, "");
         else
@@ -1228,9 +1228,9 @@ library Assert {
             a (string) - The first string.
             b (string) - The second string.
         Returns:
-             result (bool) - 'true' if the strings are equal, otherwise 'false'.
+             result (bool) - "true" if the strings are equal, otherwise "false".
     */
-    function _stringsEqual(string a, string b) internal pure returns (bool result) {
+    function _stringsEqual(string memory a, string memory b) internal pure returns (bool result) {
         bytes memory ba = bytes(a);
         bytes memory bb = bytes(b);
 
@@ -1245,16 +1245,16 @@ library Assert {
 
     /*
         Function: _itoa
-        Convert a signed integer to a string. Negative numbers gets a '-' in front, e.g. "-54".
+        Convert a signed integer to a string. Negative numbers gets a "-" in front, e.g. "-54".
         Params:
             n (int) - The integer.
             radix (uint8) - A number between 2 and 16 (inclusive). Characters used are 0-9,a-f
         Returns:
             result (string) - The resulting string.
     */
-    function _itoa(int n, uint8 radix) internal pure returns (string) {
+    function _itoa(int n, uint8 radix) internal pure returns (string memory) {
         if (n == 0 || radix < 2 || radix > 16)
-            return '0';
+            return "0";
         bytes memory bts = new bytes(256);
         uint i;
         bool neg = false;
@@ -1293,9 +1293,9 @@ library Assert {
         Returns:
             result (string) - The resulting string.
     */
-    function _utoa(uint n, uint8 radix) internal pure returns (string) {
+    function _utoa(uint n, uint8 radix) internal pure returns (string memory) {
         if (n == 0 || radix < 2 || radix > 16)
-            return '0';
+            return "0";
         bytes memory bts = new bytes(256);
         uint i;
         while (n > 0) {
@@ -1311,12 +1311,12 @@ library Assert {
 
     /*
         Function: _utoa(uint8)
-        Convert an unsigned 8-bit integer to its ASCII byte representation. Numbers 0-9 are converted to '0'-'9',
-        numbers 10-16 to 'a'-'f'. Numbers larger then 16 return the null byte.
+        Convert an unsigned 8-bit integer to its ASCII byte representation. Numbers 0-9 are converted to "0"-"9",
+        numbers 10-16 to "a"-"f". Numbers larger then 16 return the null byte.
         Params:
             u (uint8) - The unsigned 8-bit integer.
         Returns:
-            result (string) - The ASCII byte.
+            result (byte) - The ASCII byte.
     */
     function _utoa(uint8 u) internal pure returns (byte) {
         if (u < 10)
@@ -1335,23 +1335,23 @@ library Assert {
         Returns:
             result (string) - "true" if true, "false" if false.
     */
-    function _ltoa(bool val) internal pure returns (string) {
+    function _ltoa(bool val) internal pure returns (string memory) {
         bytes memory b;
         if (val) {
             b = new bytes(4);
-            b[0] = 't';
-            b[1] = 'r';
-            b[2] = 'u';
-            b[3] = 'e';
+            b[0] = "t";
+            b[1] = "r";
+            b[2] = "u";
+            b[3] = "e";
             return string(b);
         }
         else {
             b = new bytes(5);
-            b[0] = 'f';
-            b[1] = 'a';
-            b[2] = 'l';
-            b[3] = 's';
-            b[4] = 'e';
+            b[0] = "f";
+            b[1] = "a";
+            b[2] = "l";
+            b[3] = "s";
+            b[4] = "e";
             return string(b);
         }
     }
@@ -1370,14 +1370,14 @@ library Assert {
 
     /*
         Function: _tag(string)
-        Add a tag to a string. The 'value' and 'tag' strings are returned on the form "tag: value".
+        Add a tag to a string. The "value" and "tag" strings are returned on the form "tag: value".
         Params:
             value (string) - The value.
             tag (string) - The tag.
         Returns:
             result (string) - "tag: value"
     */
-    function _tag(string value, string tag) internal pure returns (string) {
+    function _tag(string memory value, string memory tag) internal pure returns (string memory) {
 
         bytes memory valueB = bytes(value);
         bytes memory tagB = bytes(tag);
@@ -1392,8 +1392,8 @@ library Assert {
 
         for (i = 0; i < tl; i++)
             newB[j++] = tagB[i];
-        newB[j++] = ':';
-        newB[j++] = ' ';
+        newB[j++] = ":";
+        newB[j++] = " ";
         for (i = 0; i < vl; i++)
             newB[j++] = valueB[i];
 
@@ -1409,7 +1409,7 @@ library Assert {
         Returns:
             result (string) - "tag: _itoa(value)"
     */
-    function _tag(int value, string tag) internal pure returns (string) {
+    function _tag(int value, string memory tag) internal pure returns (string memory) {
         string memory nstr = _itoa(value, 10);
         return _tag(nstr, tag);
     }
@@ -1423,7 +1423,7 @@ library Assert {
         Returns:
             result (string) - "tag: _utoa(value)"
     */
-    function _tag(uint value, string tag) internal pure returns (string) {
+    function _tag(uint value, string memory tag) internal pure returns (string memory) {
         string memory nstr = _utoa(value, 10);
         return _tag(nstr, tag);
     }
@@ -1437,7 +1437,7 @@ library Assert {
         Returns:
             result (string) - "tag: _ltoa(value)"
     */
-    function _tag(bool value, string tag) internal pure returns (string) {
+    function _tag(bool value, string memory tag) internal pure returns (string memory) {
         string memory nstr = _ltoa(value);
         return _tag(nstr, tag);
     }
@@ -1451,7 +1451,7 @@ library Assert {
         Returns:
             result (string) - "str (tagged)"
     */
-    function _appendTagged(string tagged, string str) internal pure returns (string) {
+    function _appendTagged(string memory tagged, string memory str) internal pure returns (string memory) {
 
         bytes memory taggedB = bytes(tagged);
         bytes memory strB = bytes(str);
@@ -1466,11 +1466,11 @@ library Assert {
 
         for (i = 0; i < sl; i++)
             newB[j++] = strB[i];
-        newB[j++] = ' ';
-        newB[j++] = '(';
+        newB[j++] = " ";
+        newB[j++] = "(";
         for (i = 0; i < tl; i++)
             newB[j++] = taggedB[i];
-        newB[j++] = ')';
+        newB[j++] = ")";
 
         return string(newB);
     }
@@ -1485,7 +1485,7 @@ library Assert {
         Returns:
             result (string) - "str (tagged0, tagged1)"
     */
-    function _appendTagged(string tagged0, string tagged1, string str) internal pure returns (string) {
+    function _appendTagged(string memory tagged0, string memory tagged1, string memory str) internal pure returns (string memory) {
 
         bytes memory tagged0B = bytes(tagged0);
         bytes memory tagged1B = bytes(tagged1);
@@ -1502,17 +1502,16 @@ library Assert {
 
         for (i = 0; i < sl; i++)
             newB[j++] = strB[i];
-        newB[j++] = ' ';
-        newB[j++] = '(';
+        newB[j++] = " ";
+        newB[j++] = "(";
         for (i = 0; i < t0l; i++)
             newB[j++] = tagged0B[i];
-        newB[j++] = ',';
-        newB[j++] = ' ';
+        newB[j++] = ",";
+        newB[j++] = " ";
         for (i = 0; i < t1l; i++)
             newB[j++] = tagged1B[i];
-        newB[j++] = ')';
+        newB[j++] = ")";
 
         return string(newB);
     }
-
 }
