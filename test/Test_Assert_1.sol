@@ -14,29 +14,29 @@ contract Test_Assert_1 is Koans {
 
     // You can make the tests fail in specific places in your code
     function test_should_fail_by_default() public {
-        Assert.fail("should always fail, delete this line to proceed");
+        // Assert.fail("should always fail, delete this line to proceed");
     }
 
     // You can test if a condition returns true
     function test_should_return_true() public {
-        Assert.isTrue(__, "should return true");
+        Assert.isTrue(true, "should return true");
     }
 
     // You can test if a condition returns false
     function test_should_return_false() public {
-        Assert.isFalse(__, "should return false");
+        Assert.isFalse(false, "should return false");
     }
 
     // You can test for (in)equality on basic data types
     function test_bools_are_equal() public {
         bool actual = true;
-        Assert.equal(actual, __, "should be equal"); 
+        Assert.equal(actual, true, "should be equal"); 
     }
 
     // But you can only compare apples to apples, so typecast your values to be the same
     function test_ints_are_not_equal() public {
         int actual = -5;
-        Assert.notEqual(actual, int(__), "should NOT be equal");
+        Assert.notEqual(actual, int(1), "should NOT be equal");
     }
 
     /*  
