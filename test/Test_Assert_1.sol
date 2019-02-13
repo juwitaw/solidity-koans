@@ -1,4 +1,4 @@
-pragma solidity ^0.4.24;
+pragma solidity ^0.5.0;
 
 // This is the Koans testing library, which modifies Truffle's standard testing library
 import "../contracts/Assert.sol";
