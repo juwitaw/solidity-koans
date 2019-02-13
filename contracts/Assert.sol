@@ -776,7 +776,7 @@ library Assert {
         Returns:
             result (bool) - The result.
     */
-    function equal(uint[] memory arrA, uint[] arrB, string memory message) public returns (bool result) {
+    function equal(uint[] memory arrA, uint[] memory arrB, string memory message) public returns (bool result) {
         result = arrA.length == arrB.length;
         if (result) {
             for (uint i = 0; i < arrA.length; i++) {
@@ -792,7 +792,7 @@ library Assert {
     /*
         Author: @nczhu
     */
-    function equal(uint[] arrA, bytes1 koan, string memory message) public {
+    function equal(uint[] memory arrA, bytes1 koan, string memory message) public {
         koan = bytes1(arrA.length); //supresses warnings
         _report(false, message);
     }
@@ -809,7 +809,7 @@ library Assert {
         Returns:
             result (bool) - The result.
     */
-    function notEqual(uint[] arrA, uint[] arrB, string memory message) public returns (bool result) {
+    function notEqual(uint[] memory arrA, uint[] memory arrB, string memory message) public returns (bool result) {
         result = arrA.length == arrB.length;
         if (result) {
             for (uint i = 0; i < arrA.length; i++) {
@@ -834,7 +834,7 @@ library Assert {
         Returns:
             result (bool) - The result.
     */
-    function lengthEqual(uint[] arr, uint length, string memory message) public returns (bool result) {
+    function lengthEqual(uint[] memory arr, uint length, string memory message) public returns (bool result) {
         uint arrLength = arr.length;
         if (arrLength == length)
             _report(result, "");
@@ -876,7 +876,7 @@ library Assert {
         Returns:
             result (bool) - The result.
     */
-    function equal(int[] arrA, int[] arrB, string memory message) public returns (bool result) {
+    function equal(int[] memory arrA, int[] memory arrB, string memory message) public returns (bool result) {
         result = arrA.length == arrB.length;
         if (result) {
             for (uint i = 0; i < arrA.length; i++) {
@@ -902,7 +902,7 @@ library Assert {
         Returns:
             result (bool) - The result.
     */
-    function notEqual(int[] arrA, int[] arrB, string memory message) public returns (bool result) {
+    function notEqual(int[] memory arrA, int[] memory arrB, string memory message) public returns (bool result) {
         result = arrA.length == arrB.length;
         if (result) {
             for (uint i = 0; i < arrA.length; i++) {
@@ -927,7 +927,7 @@ library Assert {
         Returns:
             result (bool) - The result.
     */
-    function lengthEqual(int[] arr, uint length, string memory message) public returns (bool result) {
+    function lengthEqual(int[] memory arr, uint length, string memory message) public returns (bool result) {
         uint arrLength = arr.length;
         if (arrLength == length)
             _report(result, "");
@@ -969,7 +969,7 @@ library Assert {
         Returns:
             result (bool) - The result.
     */
-    function equal(address[] arrA, address[] arrB, string memory message) public returns (bool result) {
+    function equal(address[] memory arrA, address[] memory arrB, string memory message) public returns (bool result) {
         result = arrA.length == arrB.length;
         if (result) {
             for (uint i = 0; i < arrA.length; i++) {
@@ -995,7 +995,7 @@ library Assert {
         Returns:
             result (bool) - The result.
     */
-    function notEqual(address[] arrA, address[] arrB, string memory message) public returns (bool result) {
+    function notEqual(address[] memory arrA, address[] memory arrB, string memory message) public returns (bool result) {
         result = arrA.length == arrB.length;
         if (result) {
             for (uint i = 0; i < arrA.length; i++) {
@@ -1020,7 +1020,7 @@ library Assert {
         Returns:
             result (bool) - The result.
     */
-    function lengthEqual(address[] arr, uint length, string memory message) public returns (bool result) {
+    function lengthEqual(address[] memory arr, uint length, string memory message) public returns (bool result) {
         uint arrLength = arr.length;
         if (arrLength == length)
             _report(result, "");
@@ -1062,7 +1062,7 @@ library Assert {
         Returns:
             result (bool) - The result.
     */
-    function equal(bytes32[] arrA, bytes32[] arrB, string memory message) public returns (bool result) {
+    function equal(bytes32[] memory arrA, bytes32[] memory arrB, string memory message) public returns (bool result) {
         result = arrA.length == arrB.length;
         if (result) {
             for (uint i = 0; i < arrA.length; i++) {
@@ -1088,7 +1088,7 @@ library Assert {
         Returns:
             result (bool) - The result.
     */
-    function notEqual(bytes32[] arrA, bytes32[] arrB, string memory message) public returns (bool result) {
+    function notEqual(bytes32[] memory arrA, bytes32[] memory arrB, string memory message) public returns (bool result) {
         result = arrA.length == arrB.length;
         if (result) {
             for (uint i = 0; i < arrA.length; i++) {
@@ -1113,7 +1113,7 @@ library Assert {
         Returns:
             result (bool) - The result.
     */
-    function lengthEqual(bytes32[] arr, uint length, string memory message) public returns (bool result) {
+    function lengthEqual(bytes32[] memory arr, uint length, string memory message) public returns (bool result) {
         uint arrLength = arr.length;
         if (arrLength == length)
             _report(result, "");
