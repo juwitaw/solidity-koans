@@ -11,14 +11,14 @@ contract Test_Bits_Bytes_3 is Koans {
     
     function test_integers_convert_to_bytes() public {
         int integer = 123456789;
-        Assert.equal(bytes32(integer), __, "should convert integer to bytes32");
+        Assert.equal(bytes32(integer), 0x00000000000000000000000000000000000000000000000000000000075bcd15, "should convert integer to bytes32");
     }
 
     // You can declare bytes of sizes: bytes1, bytes2, bytes32 (but NOT bytes)
     function test_shrinking_and_converting_bytes_corrupts_data() public {
         bytes32 a = bytes32(MAX_UINT);
         bytes3 b = bytes3(MAX_UINT);
-        Assert.isBelow(uint(__), uint(__), "should not be equal after resizing");
+        Assert.isBelow(uint(b), uint(a), "should not be equal after resizing");
     }
 
     // You can do bitwise operations    
@@ -27,29 +27,29 @@ contract Test_Bits_Bytes_3 is Koans {
         bytes2 mask = 0xf0f0;
         bytes2 and_masked = data & mask;
         bytes2 or_masked = data | mask;
-        Assert.equal(and_masked, __, "should equal the bitwise of (integer AND mask)");
-        Assert.equal(or_masked,__, "should equal the bitwise of (integer OR mask)");
+        Assert.equal(and_masked, bytes2(0xf0f0), "should equal the bitwise of (integer AND mask)");
+        Assert.equal(or_masked, bytes2(0xffff), "should equal the bitwise of (integer OR mask)");
     }
 
     // Likewise, you can do bitwise operations on ints
     function test_bitwise_operator_XOR() public {
         uint integer = 42;              // or 101010 bitwise
         uint actual = integer ^ 56;   
-        Assert.equal(actual, __, "should equal the bitwise of (integer XOR mask)");
+        Assert.equal(actual, uint(18), "should equal the bitwise of (integer XOR mask)");
     }
 
     // You can shift bits with bytes variables
     function test_left_shift_operand() public {
         bytes4 a = 0xffffffff;
         bytes4 actual = a << 2;
-        Assert.equal(actual, __, "should equal 0xffffffff shifted left by 2 bits");
+        Assert.equal(actual, bytes4(0xfffffffc), "should equal 0xffffffff shifted left by 2 bits");
     }
 
     // Likewise, you can shift bits with integers
     function test_right_shift_operand() public {
         uint a = 555555;
         uint actual = a >> 5;
-        Assert.equal(actual, __, "should correctly shift a right by 5 bits");
+        Assert.equal(actual, uint(17361), "should correctly shift a right by 5 bits");
     }
 
     // "bytes" is a special variable type.
@@ -62,9 +62,9 @@ contract Test_Bits_Bytes_3 is Koans {
         uint string_length = hello_world.length;
         bytes1 first_byte = hello_world[0];
         bytes1 last_byte = hello_world[string_length-1];
-        Assert.equal(string_length, __, "should be the byte length of the hello world string");
-        Assert.equal(first_byte, __, "should be the UTF-8 of the first byte");
-        Assert.equal(last_byte, __, "should be the UTF-8 of the last byte");
+        Assert.equal(string_length, uint(11), "should be the byte length of the hello world string");
+        Assert.equal(first_byte, bytes1(0x68), "should be the UTF-8 of the first byte");
+        Assert.equal(last_byte, bytes1(0x64), "should be the UTF-8 of the last byte");
     }
 
 }
